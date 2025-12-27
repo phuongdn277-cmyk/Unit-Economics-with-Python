@@ -16,6 +16,14 @@ receipts = pd.read_excel(url, sheet_name='Sheet1')
 receipts.head(5)
 ```
 
+|    | date                |   customer_id |   receipt_amount |   new_customer |
+|---:|:--------------------|--------------:|-----------------:|---------------:|
+|  0 | 2023-01-01 00:00:00 |          2653 |               67 |              1 |
+|  1 | 2023-01-01 00:00:00 |          2731 |              271 |              1 |
+|  2 | 2023-01-01 00:00:00 |          1277 |              231 |              0 |
+|  3 | 2023-01-01 00:00:00 |          2094 |              107 |              0 |
+|  4 | 2023-01-01 00:00:00 |          1314 |              416 |              0 |
+
 ## Payroll
 ```Python
 payroll_gg = '1c_WihqTZCQvNgxzmd-OwhR9i5diwtfxXVLyMn8R-Lp4'
@@ -23,6 +31,13 @@ url1='https://docs.google.com/spreadsheets/d/'+payroll_gg+ '/export?format=xlsx'
 payroll = pd.read_excel(url1, sheet_name='Sheet1')
 payroll.head(5)
 ```
+|    | month               | department   | employee_name   | position          |   paid |
+|---:|:--------------------|:-------------|:----------------|:------------------|-------:|
+|  0 | 2023-01-01 00:00:00 | Sales        | John Doe        | Sales Manager     |   1500 |
+|  1 | 2023-01-01 00:00:00 | Sales        | Jane Smith      | Sales Associate   |    600 |
+|  2 | 2023-01-01 00:00:00 | Sales        | Jim Brown       | Sales Associate   |    700 |
+|  3 | 2023-01-01 00:00:00 | Sales        | Laura Miller    | Sales Associate   |    800 |
+|  4 | 2023-01-01 00:00:00 | Marketing    | Alice Johnson   | Marketing Manager |   1650 |
 
 ## Monthly_expenses
 ```Python
@@ -31,6 +46,13 @@ url2 = 'https://docs.google.com/spreadsheets/d/'+monthly_exp+ '/export?format=xl
 expense = pd.read_excel(url2, sheet_name='Sheet1')
 expense.head(5)
 ```
+|    |   # | month               | category          | item                 |   amount |
+|---:|----:|:--------------------|:------------------|:---------------------|---------:|
+|  0 |   1 | 2023-01-01 00:00:00 | Server Costs      | AWS Hosting          |     8000 |
+|  1 |   2 | 2023-01-01 00:00:00 | Server Costs      | Google Cloud Storage |     4000 |
+|  2 |   3 | 2023-01-01 00:00:00 | Software Licenses | Atlassian Jira       |     1200 |
+|  3 |   4 | 2023-01-01 00:00:00 | Software Licenses | Slack                |      800 |
+|  4 |   5 | 2023-01-01 00:00:00 | Software Licenses | Salesforce           |     1500 |
 
 ## Daily_marketing_spendings
 ```Python
@@ -39,6 +61,13 @@ url3 = 'https://docs.google.com/spreadsheets/d/'+daily_marketing_spending+ '/exp
 marketing = pd.read_excel(url3, sheet_name='Sheet1')
 marketing.head(5)
 ```
+|    | date                | channel      |   spending |
+|---:|:--------------------|:-------------|-----------:|
+|  0 | 2023-01-01 00:00:00 | Google Ads   |        784 |
+|  1 | 2023-01-01 00:00:00 | Facebook Ads |        659 |
+|  2 | 2023-01-01 00:00:00 | LinkedIn Ads |        729 |
+|  3 | 2023-01-01 00:00:00 | Twitter Ads  |        292 |
+|  4 | 2023-01-02 00:00:00 | Google Ads   |        935 |
 
 ## Customer_lifespan_data
 ```Python
@@ -50,6 +79,14 @@ customer["lifespan_days"] = (customer["churn_date"]-customer["start_date"]).dt.d
 customer["lifespan_years"] = customer["lifespan_days"]/365
 customer.head(5)
 ```
+|    |   customer_id | start_date          | churn_date          |   lifespan_days |   lifespan_years |
+|---:|--------------:|:--------------------|:--------------------|----------------:|-----------------:|
+|  0 |          1000 | 2021-11-15 00:00:00 | 2022-09-14 00:00:00 |             303 |         0.830137 |
+|  1 |          1001 | 2022-04-15 00:00:00 | 2023-02-16 00:00:00 |             307 |         0.841096 |
+|  2 |          1002 | 2022-10-30 00:00:00 | 2023-02-04 00:00:00 |              97 |         0.265753 |
+|  3 |          1003 | 2021-08-22 00:00:00 | 2023-02-07 00:00:00 |             534 |         1.46301  |
+|  4 |          1004 | 2021-08-23 00:00:00 | 2022-02-02 00:00:00 |             163 |         0.446575 |
+
 # Create year column for all table
 ```Python
 receipts['year'] = receipts['date'].dt.year
